@@ -2,3 +2,4 @@ py-vault.spec
 build
 dist
 __pycache__
+.pytest_cache
