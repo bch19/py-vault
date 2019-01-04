@@ -1,0 +1,4 @@
+py-vault.spec
+build
+dist
+__pycache__

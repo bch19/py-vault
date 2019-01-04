@@ -50,7 +50,6 @@ if __name__ =="__main__":
     user_pass, user_pass1 = prompt_password(action_type)
 
     if action_type == "encrypt":
-        print(file_path)
         action.encrypt_file(file_path, user_pass, mode, k_len)
     elif action_type == "decrypt":
         action.decrypt_file(file_path, user_pass)

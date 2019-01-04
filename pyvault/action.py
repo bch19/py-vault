@@ -75,7 +75,6 @@ def encrypt_file(file_path, user_pass, mode="CTR", k_len=256):
 def decrypt_file(file_path, user_pass):
     ct = read_file_as_bytes(file_path)
     metadata, ct = parse_metadata(ct)
-    print('metadata mode: ' + metadata.mode + " metadata len: " + metadata.k_len)
     vaultInstance = vault.Vault(metadata.mode, metadata.k_len)
     pt = vaultInstance.decrypt(ct, user_pass)
     write_file_as_bytes(file_path, pt)
@@ -86,7 +85,3 @@ def rekey_file(file_path, user_pass, new_user_pass):
     vaultInstance = vault.Vault(metadata.mode, metadata.k_len)
     new_ct = vaultInstance.rekey(ct, user_pass, new_user_pass)
     write_file_as_bytes(file_path, new_ct, metadata)
-
-
-if __name__ == "__main__":
-    encrypt_file('vault.py', "abcabc")
