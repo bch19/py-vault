@@ -36,5 +36,5 @@ python py-vault.py rekey {file_path}
 ```
 Future plan:
 * Introduce dynamic variable creation/update/deletion in JSON/YAML files
-=======
+
 
