@@ -1,5 +1,5 @@
 from getpass import getpass
-from pyvault import action
+from pyvault import action, message
 import os, sys, argparse
 
 PROMPT_MSG = {
@@ -7,6 +7,7 @@ PROMPT_MSG = {
     'decrypt': ["Password: ", "Confirm Password: "],
     'create': ["New password: ", "Confirm new Password: "],
     'edit': ["Password: ", "Confirm Password: "],
+    'view': ["Password: ", "Confirm Password: "],
     'rekey': ["Old Password: ", "New Password: "]
 }
 
@@ -17,7 +18,7 @@ def prompt_password(action_type):
  
     if action_type != "rekey":
         if user_pass != user_pass1:
-            print("ERROR! Passwords do not match", file=sys.stderr)
+            message.print_error("Passwords do not match", 0)
         else:
             return user_pass, user_pass1
     else:
@@ -57,7 +58,10 @@ if __name__ =="__main__":
         action.create_file(file_path, user_pass, mode, k_len)
     elif action_type == "edit":
         action.edit_file(file_path, user_pass)
+    elif action_type == "view":
+        action.view_file(file_path, user_pass)
     elif action_type == "rekey":
         action.rekey_file(file_path, user_pass, user_pass1)
+
 
     

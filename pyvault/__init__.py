@@ -1,5 +1,7 @@
 
-from pyvault.action import create_file, edit_file, encrypt_file, \
-                    decrypt_file, rekey_file
+from .action import create_file, edit_file, encrypt_file, \
+                    decrypt_file, view_file, rekey_file
 
-from pyvault.vault import Vault, VaultMetadata, AESCTR, AESGCM
+from .message import print_error, print_success
+
+from .vault import Vault, VaultMetadata, AESCTR, AESGCM

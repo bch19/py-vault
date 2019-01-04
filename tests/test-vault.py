@@ -1,9 +1,8 @@
-
-import vault
-import entry
 import pytest
 import sys, os
+sys.path.append("..")
 
+from pyvault import vault, action
 
 def test_encryption_decryption():
     user_pass = "abcabc"
@@ -40,11 +39,10 @@ def test_encrypt_decrypt_e_key():
     assert(e_key == e_key1)
 
 def test_get_validate_hmac():
-    vaultInstance = vault.Vault("CTR", 256)
     data = b"ABCDEFGHI"
     key = os.urandom(32)
-    hmac1 = vaultInstance.get_hmac(key, data)
-    result = vaultInstance.validate_hmac(key, data, hmac1)
+    hmac1 = vault.HMACUtils.get_hmac(key, data)
+    result = vault.HMACUtils.validate_hmac(key, data, hmac1)
     assert(result == True)
 
 def test_encrypt_decrypt_AESCTR():
